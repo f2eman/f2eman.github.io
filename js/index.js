@@ -75,10 +75,9 @@ S.Drawing = (function () {
 S.UI = (function () {
   var input = document.querySelector('.ui-input'),
     ui = document.querySelector('.ui'),
-    // help = document.querySelector('.help'),
-    commands = document.querySelector('.commands'),
-    overlay = document.querySelector('.overlay'),
+    help = document.querySelector('.help'),
     canvas = document.querySelector('.canvas'),
+    uiClose = document.querySelector('.ui-close'),
     interval,
     isTouch = false, //('ontouchstart' in window || navigator.msMaxTouchPoints),
     currentAction,
@@ -139,7 +138,7 @@ S.UI = (function () {
   function performAction(value) {
     var action, value, current;
 
-    overlay.classList.remove('overlay--visible');
+    // overlay.classList.remove('overlay--visible');
     sequence =
       typeof value === 'object' ? value : sequence.concat(value.split('|'));
     input.value = '';
@@ -217,7 +216,7 @@ S.UI = (function () {
             );
         }
       },
-      2000,
+      1500,
       sequence.length
     );
   }
@@ -251,46 +250,13 @@ S.UI = (function () {
     input.addEventListener('change', checkInputWidth);
     input.addEventListener('focus', checkInputWidth);
 
-    // help.addEventListener('click', function (e) {
-    //   overlay.classList.toggle('overlay--visible');
-    //   overlay.classList.contains('overlay--visible') && reset(true);
-    // });
-
-    commands.addEventListener('click', function (e) {
-      var el, info, demo, tab, active, url;
-
-      if (e.target.classList.contains('commands-item')) {
-        el = e.target;
-      } else {
-        el = e.target.parentNode.classList.contains('commands-item')
-          ? e.target.parentNode
-          : e.target.parentNode.parentNode;
-      }
-
-      info = el && el.querySelector('.commands-item-info');
-      demo = el && info.getAttribute('data-demo');
-      url = el && info.getAttribute('data-url');
-
-      if (info) {
-        overlay.classList.remove('overlay--visible');
-
-        if (demo) {
-          input.value = demo;
-
-          if (isTouch) {
-            reset();
-            performAction(input.value);
-          } else {
-            input.focus();
-          }
-        } else if (url) {
-          //window.location = url;
-        }
-      }
+    help.addEventListener('click', function (e) {
+      ui.style.display = ui.style.display == 'block' ? 'none' : 'block';
     });
 
-    canvas.addEventListener('click', function (e) {
-      overlay.classList.remove('overlay--visible');
+    uiClose.addEventListener('click', function (e) {
+      ui.style.display = 'none';
+      S.init();
     });
   }
 
@@ -308,46 +274,6 @@ S.UI = (function () {
       performAction(action);
     },
   };
-})();
-
-S.UI.Tabs = (function () {
-  var tabs = document.querySelector('.tabs'),
-    labels = document.querySelector('.tabs-labels'),
-    triggers = document.querySelectorAll('.tabs-label'),
-    panels = document.querySelectorAll('.tabs-panel');
-
-  function activate(i) {
-    triggers[i].classList.add('tabs-label--active');
-    panels[i].classList.add('tabs-panel--active');
-  }
-
-  function bindEvents() {
-    labels.addEventListener('click', function (e) {
-      var el = e.target,
-        index;
-
-      if (el.classList.contains('tabs-label')) {
-        for (var t = 0; t < triggers.length; t++) {
-          triggers[t].classList.remove('tabs-label--active');
-          panels[t].classList.remove('tabs-panel--active');
-
-          if (el === triggers[t]) {
-            index = t;
-          }
-        }
-
-        activate(index);
-      }
-    });
-  }
-
-  function init() {
-    activate(0);
-    bindEvents();
-  }
-
-  // Init
-  init();
 })();
 
 S.Point = function (args) {
