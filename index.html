@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>F2EMAN</title>
-  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-</head>
-<body>
-<h3>努力编码中...</h3>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>F2EMAN</title>
+    <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="./css/style.css"
+      media="screen"
+      type="text/css"
+      rel="noopener noreferrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://at.alicdn.com/t/font_3336186_4bvjmcrgyks.css"
+      rel="noopener noreferrer"
+    />
+  </head>
+
+  <body>
+    <div class="banner-wrapper">
+      <div class="logo-wrapper">
+        <img src="./image/f2eman.png" alt="" />
+      </div>
+      <canvas class="canvas"></canvas>
+      <div class="help">?</div>
+      <div class="tool" style="display: none">
+        <input
+          class="tool-input"
+          type="text"
+          placeholder="输入后按回车试试^_^"
+        />
+        <span class="tool-return">↵</span>
+      </div>
+      <i class="iconfont icon-arrowdown j_arrow"></i>
+    </div>
+    <div class="content-wrapper j_content">
+      <div class="footer-warpper">
+        <div class="copyright">
+          <div class="contact">
+            <a
+              href="mailto:f2man@163.com"
+              class="iconfont icon-email"
+              rel="noopener noreferrer"
+            ></a>
+            <a
+              href=""
+              class="iconfont icon-weixin"
+              rel="noopener noreferrer"
+            ></a>
+            <a
+              href="https://github.com/f2eman"
+              class="iconfont icon-github-fill"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a>
+            <a
+              href="https://gitee.com/F2EMan"
+              class="iconfont icon-gitee-fill-round"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a>
+          </div>
+          <div>
+            <span>Copyright © F2EMAN丨2018 - <span class="j_time"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <script src="./js/tool.js"></script>
+  </body>
 </html>
